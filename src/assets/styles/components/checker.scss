@@ -1,0 +1,25 @@
+@use '../base' as *;
+
+.checker {
+    border-radius: 50%;
+    aspect-ratio: 1;
+    border-width: 0;
+    transition-property: box-shadow;
+    margin: 2px;
+    &:hover {
+        box-shadow: 0 0 0 2px $primary-color-700;
+    }
+
+    &.white {
+        background-color: $primary-color-600;
+    }
+
+    &.random {
+        background-image: linear-gradient(
+            to top right,
+            transparent,
+            transparent 50%,
+            $primary-color-600 50%
+        );
+    }
+}

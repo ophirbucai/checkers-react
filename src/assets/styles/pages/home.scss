@@ -1,0 +1,12 @@
+@use '../mixins' as *;
+
+.home {
+    @include container;
+    
+    .menu {
+        rotate: -45deg;
+        display: grid;
+        place-content: center;
+        gap: 8px;
+    }
+}
