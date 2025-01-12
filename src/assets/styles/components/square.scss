@@ -1,0 +1,36 @@
+@use '../base' as *;
+.square {
+    display: inline-grid;
+    align-items: center;
+    aspect-ratio: 1;
+    padding: 10%;
+    background-color: #f1f1f1;
+    $clip-size: 4px;
+    $clip: calc(100% - $clip-size);
+    clip-path: polygon(
+        $clip-size 0%,
+        $clip 0%,
+        100% $clip-size,
+        100% $clip,
+        $clip 100%,
+        $clip-size 100%,
+        0% $clip,
+        0% $clip-size
+    );
+
+    &.black {
+        background-color: #121212;
+    }
+
+    &.active {
+        cursor: pointer;
+        position: relative;
+
+        .clickable {
+            position: absolute;
+            border-radius: 50%;
+            box-shadow: inset 0 0 0 2px $primary-color-500;
+            inset: 6px;
+        }
+    }
+}

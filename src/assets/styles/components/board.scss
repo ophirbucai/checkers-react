@@ -2,37 +2,13 @@
 
 .board {
     display: grid;
-    $gt: repeat(var(--board-size, 8), minmax(min-content, 1fr));
+    $gt: repeat(var(--board-size, 8), minmax(60px, 1fr));
+    max-width: 100%;
     grid-template: $gt / $gt;
 
     &.rotate-180 {
         rotate: 180deg;
     }
 
-    .square {
-        display: inline-grid;
-        aspect-ratio: 1;
-        align-items: center;
-        padding: 4px;
-        background-color: #f1f1f1;
-
-        &.black {
-            background-color: #121212;
-            .checker.black {
-                filter: drop-shadow(0 0 1px #fff8);
-            }
-        }
-
-        &.active {
-            cursor: pointer;
-            position: relative;
-            
-            .clickable {
-                position: absolute;
-                border-radius: 50%;
-                border-color: $primary-color-500;
-                inset: 6px;
-            }
-        }
-    }
+    
 }

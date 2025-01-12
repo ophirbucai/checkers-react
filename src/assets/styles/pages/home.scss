@@ -1,4 +1,4 @@
-@use '../mixins' as *;
+@use '../base' as *;
 
 .home {
     @include container;
@@ -8,5 +8,9 @@
         display: grid;
         place-content: center;
         gap: 8px;
+
+        .checker {
+            width: 100px;
+        }
     }
 }

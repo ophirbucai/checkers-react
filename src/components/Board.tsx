@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Game } from "../lib/entities/game.entity";
 import { Player } from "../lib/types/player.type";
 import { Fragment } from "react";
@@ -18,6 +18,10 @@ export function Board({ player }: BoardProps) {
 		[],
 	);
 
+	const validMoves = useMemo(() => {
+		return activePiece?.validMoves;
+	}, [activePiece]);
+
 	return (
 		<div
 			className={`board ${player === "white" ? "rotate-180" : ""}`}
@@ -26,10 +30,10 @@ export function Board({ player }: BoardProps) {
 			{game.board.map((squares, rowIndex) => (
 				<Fragment key={rowIndex.toFixed()}>
 					{squares.map((square, colIndex) => {
-						const isClickable = activePiece?.validMoves.includes(square);
+						const isClickable = activePiece && validMoves?.includes(square);
 						return (
 							<div
-								className={`square ${square.isValidSquare ? "black" : ""} ${isClickable ? "active" : ""}`}
+								className={`square ${square.isBlackSquare ? "black" : ""} ${isClickable ? "active" : ""}`}
 								key={colIndex.toFixed()}
 							>
 								{square.piece && (
@@ -39,7 +43,14 @@ export function Board({ player }: BoardProps) {
 									/>
 								)}
 								{isClickable && (
-									<button type="button" className="clickable">
+									<button
+										className="clickable"
+										type="button"
+										onClick={() => {
+											activePiece.move(square);
+											setActivePiece(null);
+										}}
+									>
 										<span className="sr-only">Move</span>
 									</button>
 								)}
