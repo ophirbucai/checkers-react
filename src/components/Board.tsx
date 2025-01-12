@@ -28,13 +28,13 @@ export function Board({ player }: BoardProps) {
 			style={{ "--board-size": game.boardSize } as React.CSSProperties}
 		>
 			{game.board.map((squares, rowIndex) => (
-				<Fragment key={rowIndex.toFixed()}>
+				<Fragment key={rowIndex}>
 					{squares.map((square, colIndex) => {
 						const isClickable = activePiece && validMoves?.includes(square);
 						return (
 							<div
 								className={`square ${square.isBlackSquare ? "black" : ""} ${isClickable ? "active" : ""}`}
-								key={colIndex.toFixed()}
+								key={colIndex}
 							>
 								{square.piece && (
 									<Piece
